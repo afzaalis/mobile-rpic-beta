@@ -1,16 +1,11 @@
 # rpic_mobile_beta
+Aplikasi Reservasi PC untuk internet cafe MOD di bandung
 
-A new Flutter project.
+# Tools
+Application Build using flutter and dart
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Team Project
+<li>Afzaal isnaufal -Developer and PM</li>
+<li>Athalla Muhammad Abdul ziz -UI Designer and UX</li>
+<li>Muhammad rizki -Developer</li>
+<li>Salman hamala -Designer and UX</li>
