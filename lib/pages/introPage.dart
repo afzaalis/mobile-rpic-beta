@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import './login.dart';
 
-class Intropage extends StatelessWidget{
-
+class Intropage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
       body: DecoratedBox(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -36,7 +34,6 @@ class Intropage extends StatelessWidget{
                 ],
               ),
             ),
-
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -76,12 +73,7 @@ class Intropage extends StatelessWidget{
                           height: 52, 
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Login(),
-                                   )
-                              );
+                              Navigator.pushNamed(context, '/login'); 
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xFF640EF1),

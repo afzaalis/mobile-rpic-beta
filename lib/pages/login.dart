@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rpic_mobile_beta/pages/reservasiPage.dart';
 import './signup.dart';
-import './reservasiPage.dart';
+import '../components/bottom_nav_bar.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -53,7 +52,7 @@ class _LoginState extends State<Login> {
                       child: TextField(
                         controller: _usernameController,
                         decoration: InputDecoration(
-                          labelText: 'Username',
+                          labelText: 'Email/Username',
                           prefixIcon: Icon(Icons.person, color: Colors.grey),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -64,7 +63,6 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     SizedBox(height: 16),
-                    // Input untuk Password
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: TextField(
@@ -105,12 +103,13 @@ class _LoginState extends State<Login> {
                       String password = _passwordController.text;
                       print('Username: $username');
                       print('Password: $password');
-                      Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Reservasipage(),
-                                   )
-                              );
+                      
+                      
+                     Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => MainPage()),
+                    );
+
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF640EF1),
@@ -127,7 +126,6 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ),
-
                 Container(
                   margin: EdgeInsets.only(bottom: 20),
                   child: GestureDetector(

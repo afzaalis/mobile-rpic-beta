@@ -53,7 +53,7 @@ class SignupPage extends StatelessWidget {
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       filled: true, 
-                      fillColor: Colors.grey[300], 
+                      fillColor: Colors.white, 
                     ),
                     style: TextStyle(color: Colors.grey[800]), // Darker text
                   ),
@@ -75,7 +75,7 @@ class SignupPage extends StatelessWidget {
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       filled: true,
-                      fillColor: Colors.grey[300], // Lighter background color
+                      fillColor: Colors.white, // Lighter background color
                     ),
                     style: TextStyle(color: Colors.grey[800]), // Darker text
                   ),
@@ -97,7 +97,7 @@ class SignupPage extends StatelessWidget {
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       filled: true,
-                      fillColor: Colors.grey[300], // Lighter background color
+                      fillColor: Colors.white, 
                     ),
                     style: TextStyle(color: Colors.grey[800]), // Darker text
                   ),
@@ -119,7 +119,7 @@ class SignupPage extends StatelessWidget {
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       filled: true,
-                      fillColor: Colors.grey[300], // Lighter background color
+                      fillColor: Colors.white, // Lighter background color
                     ),
                     style: TextStyle(color: Colors.grey[800]), // Darker text
                   ),
@@ -151,7 +151,6 @@ class SignupPage extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   
-                  // Already have account
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
