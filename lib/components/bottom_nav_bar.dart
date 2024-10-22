@@ -10,7 +10,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _activeIndex = 1; // Indeks awal untuk bottom navigation
+  int _activeIndex = 1; 
   final List<Widget> _pages = [
     ProfilePage(),
     Reservasipage(), 
@@ -51,7 +51,7 @@ class _MainPageState extends State<MainPage> {
           bottomRight: Radius.circular(24),
           bottomLeft: Radius.circular(24),
         ),
-        shadowColor: Colors.deepPurple,
+        shadowColor: Colors.black,
         circleShadowColor: Colors.deepPurple,
         elevation: 10,
         gradient: LinearGradient(
@@ -64,7 +64,7 @@ class _MainPageState extends State<MainPage> {
           end: Alignment.bottomLeft,
           colors: [Colors.blue, Colors.red],
         ),
-        onTap: (index) => _onNavItemTapped(index), // Implementasi tapping
+        onTap: (index) => _onNavItemTapped(index), 
       ),
     );
   }

@@ -55,7 +55,6 @@ class Intropage extends StatelessWidget {
                             color: Colors.white,
                             fontSize: 26,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Poppins',
                           ),
                         ),
                         SizedBox(height: 10),
