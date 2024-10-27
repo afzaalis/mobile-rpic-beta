@@ -9,5 +9,5 @@ Application Build using flutter and dart
 <li>Athalla Muhammad Abdul ziz -UI Designer and dev</li>
 <li>Muhammad rizki -Developer</li>
 <li>Salman hamala -Designer and dev</li>
-<li>Syawal najat</li>Dev</li>
+<li>Syawal najat -Dev</li>
 
