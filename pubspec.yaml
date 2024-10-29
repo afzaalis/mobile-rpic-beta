@@ -35,10 +35,14 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  blurrycontainer: ^2.1.0
-  circle_nav_bar: ^2.1.1
-  flutter_advanced_avatar: ^1.0.1
-  flutter_dialogs: ^2.0.0
+  blurrycontainer: ^2.1.0 
+  circle_nav_bar: ^2.1.1  #syawal
+  flutter_advanced_avatar: ^1.0.1 #salman
+  flutter_dialogs: ^2.0.0 #atha
+  flutter_local_notifications: ^17.2.4 #afzal
+  flutter_timezone: ^3.0.1 #afzaal
+  rxdart: ^0.28.0 #afzaal
+  google_fonts: ^6.2.1 #rizki
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +73,7 @@ flutter:
     - images/imgPagePC/drivesimulator.png
     - images/imgProfile/bannerprofile.png
     - images/imgProfile/Voucher.png
+    - images/imgPagePC/selectionNote.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

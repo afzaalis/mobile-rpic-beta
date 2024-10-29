@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_avatar/flutter_advanced_avatar.dart'; 
 
 class ProfilePage extends StatelessWidget {
+  final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+
   @override
   Widget build(BuildContext context) {
     final padding = MediaQuery.of(context).padding;
 
+
     return Scaffold(
+      key: _scaffoldMessengerKey,
       backgroundColor: const Color(0xFF0B0B12),
       body: Column(
         children: [
@@ -95,7 +99,7 @@ class ProfilePage extends StatelessWidget {
                     const SizedBox(height: 20),
                     _buildVoucherSection(context),  
                     const SizedBox(height: 20),
-                    _buildFeedbackSection(),
+                    _buildFeedbackSection(context),  
                     const SizedBox(height: 8),
                     Divider(
                       height: 1,
@@ -183,46 +187,45 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
- Widget _buildVoucherSection(BuildContext context) {
-  return GestureDetector(
-    onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => VoucherPage()), 
-      );
-    },
-    child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      color: const Color(0xFF15162F),
-      child: Row(
-        children: [
-          Image.asset(
-            'images/imgProfile/Voucher.png', 
-            width: 30, 
-            height: 30, 
-          ),
-          const SizedBox(width: 12),
-          const Text(
-            'Voucher Saya',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
+  Widget _buildVoucherSection(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => VoucherPage()), 
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        color: const Color(0xFF15162F),
+        child: Row(
+          children: [
+            Image.asset(
+              'images/imgProfile/Voucher.png', 
+              width: 30, 
+              height: 30, 
             ),
-          ),
-          const Spacer(),
-          const Icon(
-            Icons.arrow_forward,
-            color: Colors.white,
-          ),
-        ],
+            const SizedBox(width: 12),
+            const Text(
+              'Voucher Saya',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const Spacer(),
+            const Icon(
+              Icons.arrow_forward,
+              color: Colors.white,
+            ),
+          ],
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 
-
-  Widget _buildFeedbackSection() {
+  Widget _buildFeedbackSection(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       color: const Color(0xFF0B0B12),
@@ -263,6 +266,11 @@ class ProfilePage extends StatelessWidget {
           const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Feedback telah dikirim!'),
+                ),
+              );
             },
             child: const Text(
               'Kirim',

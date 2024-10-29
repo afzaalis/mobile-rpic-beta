@@ -8,16 +8,16 @@ class AnimatedTextPage extends StatefulWidget {
 }
 
 class _AnimatedTextPageState extends State<AnimatedTextPage> {
-  bool _showSecondText = false; // To control the visibility of the second text
-  bool _showFirstText = true; // To control the visibility of the first text
+  bool _showSecondText = false; 
+  bool _showFirstText = true; 
 
   @override
   void initState() {
     super.initState();
     Timer(Duration(seconds: 3), () {
       setState(() {
-        _showFirstText = false; // Hide the first text
-        _showSecondText = true; // Show the second text
+        _showFirstText = false; 
+        _showSecondText = true; 
       });
 
       Timer(Duration(seconds: 2), () {

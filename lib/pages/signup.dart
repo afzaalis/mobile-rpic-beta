@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import './login.dart';
 
 class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: DecoratedBox(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -14,134 +14,129 @@ class SignupPage extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: SingleChildScrollView( 
+          child: SingleChildScrollView(
             child: Container(
               width: 300,
-              padding: EdgeInsets.all(16), 
+              padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Color(0xFF15162F), 
+                color: Color(0xFF15162F),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(
-                mainAxisSize: MainAxisSize.min, 
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: Text(
                       'SIGN UP',
-                      style: TextStyle(
+                      style: GoogleFonts.lato(
                         color: Colors.white,
-                        fontSize: 20,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-
                   // Username input
                   TextFormField(
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       labelText: 'Username',
-                      labelStyle: TextStyle(color: Colors.grey[800]), // Darker text
-                      prefixIcon: Icon(Icons.person, color: Colors.grey[800]), 
+                      labelStyle: TextStyle(color: Colors.grey[800]),
+                      prefixIcon: Icon(Icons.person, color: Colors.grey[800]),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15), // Border radius
+                        borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15), // Border radius
+                        borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide(color: Colors.grey),
                       ),
-                      filled: true, 
-                      fillColor: Colors.white, 
+                      filled: true,
+                      fillColor: Colors.white,
                     ),
-                    style: TextStyle(color: Colors.grey[800]), // Darker text
+                    style: TextStyle(color: Colors.grey[800]),
                   ),
                   SizedBox(height: 10),
-
                   // Email input
                   TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: 'Email',
-                      labelStyle: TextStyle(color: Colors.grey[800]), // Darker text
-                      prefixIcon: Icon(Icons.email, color: Colors.grey[800]), 
+                      labelStyle: TextStyle(color: Colors.grey[800]),
+                      prefixIcon: Icon(Icons.email, color: Colors.grey[800]),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15), // Border radius
+                        borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15), // Border radius
+                        borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       filled: true,
-                      fillColor: Colors.white, // Lighter background color
+                      fillColor: Colors.white,
                     ),
-                    style: TextStyle(color: Colors.grey[800]), // Darker text
+                    style: TextStyle(color: Colors.grey[800]),
                   ),
                   SizedBox(height: 10),
-
                   // Password input
                   TextFormField(
-                    obscureText: true, 
+                    obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'Password',
-                      labelStyle: TextStyle(color: Colors.grey[800]), // Darker text
-                      prefixIcon: Icon(Icons.lock, color: Colors.grey[800]), 
+                      labelStyle: TextStyle(color: Colors.grey[800]),
+                      prefixIcon: Icon(Icons.lock, color: Colors.grey[800]),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15), // Border radius
+                        borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15), // Border radius
+                        borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       filled: true,
-                      fillColor: Colors.white, 
+                      fillColor: Colors.white,
                     ),
-                    style: TextStyle(color: Colors.grey[800]), // Darker text
+                    style: TextStyle(color: Colors.grey[800]),
                   ),
                   SizedBox(height: 10),
-
                   // Confirm Password input
                   TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'Confirm Password',
-                      labelStyle: TextStyle(color: Colors.grey[800]), // Darker text
-                      prefixIcon: Icon(Icons.lock, color: Colors.grey[800]), 
+                      labelStyle: TextStyle(color: Colors.grey[800]),
+                      prefixIcon: Icon(Icons.lock, color: Colors.grey[800]),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15), // Border radius
+                        borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15), // Border radius
+                        borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       filled: true,
-                      fillColor: Colors.white, // Lighter background color
+                      fillColor: Colors.white,
                     ),
-                    style: TextStyle(color: Colors.grey[800]), // Darker text
+                    style: TextStyle(color: Colors.grey[800]),
                   ),
                   SizedBox(height: 20),
-
                   // Sign Up Button
                   SizedBox(
-                    width: 300, 
-                    height: 35, 
+                    width: 300,
+                    height: 35,
                     child: ElevatedButton(
                       onPressed: () {
                         print('Sign Up button pressed');
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF640EF1), 
+                        backgroundColor: Color(0xFF640EF1),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10), 
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                       child: Text(
                         'Sign Up',
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -150,27 +145,26 @@ class SignupPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 20),
-                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         "Already have an account?",
-                        style: TextStyle(color: Colors.white),
+                        style: GoogleFonts.lato(color: Colors.white),
                       ),
                       TextButton(
                         onPressed: () {
                           Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Login(),
-                                   )
-                              );
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Login(),
+                            ),
+                          );
                         },
                         child: Text(
                           "Login here",
-                          style: TextStyle(
-                            color: Colors.blue, 
+                          style: GoogleFonts.lato(
+                            color: Colors.blue,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
