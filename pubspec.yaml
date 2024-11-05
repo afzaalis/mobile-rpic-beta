@@ -43,6 +43,7 @@ dependencies:
   flutter_timezone: ^3.0.1 #afzaal
   rxdart: ^0.28.0 #afzaal
   google_fonts: ^6.2.1 #rizki
+  tab_container: ^3.5.3
 
 dev_dependencies:
   flutter_test:

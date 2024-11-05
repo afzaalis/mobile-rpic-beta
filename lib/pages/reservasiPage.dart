@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rpic_mobile_beta/pages/adminDrivingPage.dart';
 import 'package:rpic_mobile_beta/pages/betaPage.dart';
 import 'package:rpic_mobile_beta/pages/drivingSimPage.dart';
 import 'alphaPage.dart';
@@ -95,7 +96,7 @@ class Reservasipage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => DrivingPage()),
+                      MaterialPageRoute(builder: (context) => AdminDrivingPage()),
                     );
                   },
                   child: Container(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rpic_mobile_beta/local_notifications.dart';
+import 'orderPage.dart'; // Import your OrderPage
 
 class DrivingPage extends StatefulWidget {
   const DrivingPage({super.key});
@@ -18,7 +19,14 @@ class _DrivingPageState extends State<DrivingPage> {
       if (selectedPCs.contains(pc)) {
         selectedPCs.remove(pc); // Jika sudah dipilih, hapus dari daftar
       } else {
-        selectedPCs.add(pc); // Jika belum dipilih, tambahkan ke daftar
+        if (selectedPCs.length < 3) {
+          selectedPCs.add(pc); // Jika belum dipilih dan max belum tercapai, tambahkan ke daftar
+        } else {
+          // Menampilkan pesan jika sudah mencapai batas maksimum
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("You can only select a maximum of 3 PCs.")),
+          );
+        }
       }
     });
   }
@@ -45,53 +53,52 @@ class _DrivingPageState extends State<DrivingPage> {
         backgroundColor: Color(0xFF2C2D59),
         iconTheme: IconThemeData(color: Colors.white),
       ),
-     body: Center(
-  child: SingleChildScrollView(
-    child: Wrap(
-      spacing: 20.0,
-      runSpacing: 10.0,
-      alignment: WrapAlignment.center,
-      children: [
-        for (int i = 1; i <= 16; i++)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5.0),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(75, 50),
-                backgroundColor: selectedPCs.contains("D$i") ? Color(0xFF640EF1) : Colors.white, 
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Wrap(
+            spacing: 20.0,
+            runSpacing: 10.0,
+            alignment: WrapAlignment.center,
+            children: [
+              for (int i = 1; i <= 16; i++)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5.0),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: Size(75, 50),
+                      backgroundColor: selectedPCs.contains("D$i") ? Color(0xFF640EF1) : Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    onPressed: () {
+                      toggleSelection("D$i"); // Tambah atau hapus dari daftar yang dipilih
+                      LocalNotifications.showSimpleNotification(
+                        title: "PC D$i ${selectedPCs.contains("D$i") ? "Selected" : "Unselected"}",
+                        body: "PC D$i has been ${selectedPCs.contains("D$i") ? "added" : "removed"} from the selection.",
+                        payload: "PC D$i ${selectedPCs.contains("D$i") ? "selected" : "unselected"}",
+                      );
+                    },
+                    child: Text(
+                      "D$i",
+                      style: TextStyle(
+                        color: selectedPCs.contains("D$i") ? Colors.white : Colors.black,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-             onPressed: () {
-              toggleSelection("D$i"); // Tambah atau hapus dari daftar yang dipilih
-              LocalNotifications.showSimpleNotification(
-                title: "PC D$i ${selectedPCs.contains("D$i") ? "Selected" : "Unselected"}",
-                body: "PC D$i has been ${selectedPCs.contains("D$i") ? "added" : "removed"} from the selection.",
-                payload: "PC D$i ${selectedPCs.contains("D$i") ? "selected" : "unselected"}",
-              );
-            },
-            child: Text(
-              "D$i",
-              style: TextStyle(
-                color: selectedPCs.contains("D$i") ? Colors.white : Colors.black,
-              ),
-            ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
-    ),
-  ),
-
       bottomNavigationBar: Container(
         color: Color(0xFF2C2D59), 
         padding: EdgeInsets.all(10),
         height: 180, 
         child: Center( 
           child: Column(
-            mainAxisSize: MainAxisSize.min, // Mengatur tinggi kolom agar tidak mengambil ruang lebih
-            crossAxisAlignment: CrossAxisAlignment.center, // Memusatkan konten secara horizontal
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 "Selected PCs",
@@ -123,39 +130,25 @@ class _DrivingPageState extends State<DrivingPage> {
               SizedBox(height: 5), 
               ElevatedButton(
                 onPressed: () {
-                  // Aksi yang dilakukan saat tombol diklik
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text("Confirm Booking"),
-                        content: Text("Are you sure you want to book the selected PCs?"),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop(); // Tindakan saat dibatalkan
-                            },
-                            child: Text("Cancel"),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop(); // Tindakan saat konfirmasi
-                              // Lakukan pemesanan atau tindakan lainnya di sini
-                            },
-                            child: Text("Confirm"),
-                          ),
-                        ],
-                      );
-                    },
-                  );
+                  if (selectedPCs.isNotEmpty) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OrderPage(selectedPCs: selectedPCs),
+                      ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Please select at least one PC.")),
+                    );
+                  }
                 },
                 child: Text("Confirm Booking"),
-                style: ElevatedButton.styleFrom(
-                ),
+                style: ElevatedButton.styleFrom(),
               ),
             ],
           ),
-      ),
+        ),
       ),
     );
   }

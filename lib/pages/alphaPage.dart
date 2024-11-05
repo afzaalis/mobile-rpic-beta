@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rpic_mobile_beta/local_notifications.dart';
+import 'orderPage.dart';
 
 class Alphapage extends StatefulWidget {
   const Alphapage({super.key});
@@ -13,15 +14,21 @@ class _AlphapageState extends State<Alphapage> {
   List<String> selectedPCs = [];
 
   // Fungsi untuk menambahkan atau menghapus PC dari daftar yang dipilih
-  void toggleSelection(String pc) {
-    setState(() {
-      if (selectedPCs.contains(pc)) {
-        selectedPCs.remove(pc); // Jika sudah dipilih, hapus dari daftar
-      } else {
-        selectedPCs.add(pc); // Jika belum dipilih, tambahkan ke daftar
-      }
-    });
-  }
+    void toggleSelection(String pc) {
+      setState(() {
+        if (selectedPCs.contains(pc)) {
+          selectedPCs.remove(pc); // Jika sudah dipilih, hapus dari daftar
+        } else if (selectedPCs.length < 3) { // Cek apakah sudah ada 3 PC yang dipilih
+          selectedPCs.add(pc); // Jika belum dipilih dan belum mencapai batas, tambahkan ke daftar
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("You can only select up to 3 PCs."),
+            ),
+          );
+        }
+      });
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +71,7 @@ class _AlphapageState extends State<Alphapage> {
                 ),
               ),
              onPressed: () {
-              toggleSelection("A$i"); // Tambah atau hapus dari daftar yang dipilih
+              toggleSelection("A$i"); 
               LocalNotifications.showSimpleNotification(
                 title: "PC A$i ${selectedPCs.contains("A$i") ? "Selected" : "Unselected"}",
                 body: "PC A$i has been ${selectedPCs.contains("A$i") ? "added" : "removed"} from the selection.",
@@ -90,8 +97,8 @@ class _AlphapageState extends State<Alphapage> {
         height: 180, 
         child: Center( 
           child: Column(
-            mainAxisSize: MainAxisSize.min, // Mengatur tinggi kolom agar tidak mengambil ruang lebih
-            crossAxisAlignment: CrossAxisAlignment.center, // Memusatkan konten secara horizontal
+            mainAxisSize: MainAxisSize.min, 
+            crossAxisAlignment: CrossAxisAlignment.center, 
             children: [
               Text(
                 "Selected PCs",
@@ -121,38 +128,44 @@ class _AlphapageState extends State<Alphapage> {
                 ),
               ),
               SizedBox(height: 5), 
-              ElevatedButton(
-                onPressed: () {
-                  // Aksi yang dilakukan saat tombol diklik
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text("Confirm Booking"),
-                        content: Text("Are you sure you want to book the selected PCs?"),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop(); // Tindakan saat dibatalkan
-                            },
-                            child: Text("Cancel"),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop(); // Tindakan saat konfirmasi
-                              // Lakukan pemesanan atau tindakan lainnya di sini
-                            },
-                            child: Text("Confirm"),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
-                child: Text("Confirm Booking"),
-                style: ElevatedButton.styleFrom(
-                ),
+             ElevatedButton(
+              onPressed: () {
+                // Aksi yang dilakukan saat tombol diklik
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text("Confirm Booking"),
+                      content: Text("Are you sure you want to book the selected PCs?"),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(); // Tindakan saat dibatalkan
+                          },
+                          child: Text("Cancel"),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(); // Tindakan saat konfirmasi
+                            // Navigasi ke OrderPage dan kirim daftar PC yang dipilih
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => OrderPage(selectedPCs: selectedPCs),
+                              ),
+                            );
+                          },
+                          child: Text("Confirm"),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: Text("Confirm Booking"),
+              style: ElevatedButton.styleFrom(
               ),
+            ),
             ],
           ),
       ),

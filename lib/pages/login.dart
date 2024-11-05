@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './signup.dart';
 import '../components/bottom_nav_bar.dart';
+import 'adminDrivingPage.dart'; 
 
 class Login extends StatefulWidget {
   @override
@@ -101,15 +102,19 @@ class _LoginState extends State<Login> {
                     onPressed: () {
                       String username = _usernameController.text;
                       String password = _passwordController.text;
-                      print('Username: $username');
-                      print('Password: $password');
-                      
-                      
-                     Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => MainPage()),
-                    );
 
+                      // Check for admin credentials
+                      if (username == 'admin' && password == 'admin123') {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => MainPage()),
+                        );
+                      } else {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => MainPage()),
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF640EF1),

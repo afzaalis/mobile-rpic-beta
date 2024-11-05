@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rpic_mobile_beta/local_notifications.dart';
+import 'orderPage.dart'; // Import your OrderPage
 
 class BetaPage extends StatefulWidget {
   const BetaPage({super.key});
@@ -18,7 +19,14 @@ class _BetaPageState extends State<BetaPage> {
       if (selectedPCs.contains(pc)) {
         selectedPCs.remove(pc); // Jika sudah dipilih, hapus dari daftar
       } else {
-        selectedPCs.add(pc); // Jika belum dipilih, tambahkan ke daftar
+        if (selectedPCs.length < 3) {
+          selectedPCs.add(pc); // Jika belum dipilih dan max belum tercapai, tambahkan ke daftar
+        } else {
+          // Menampilkan pesan jika sudah mencapai batas maksimum
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("You can only select a maximum of 3 PCs.")),
+          );
+        }
       }
     });
   }
@@ -58,7 +66,7 @@ class _BetaPageState extends State<BetaPage> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       fixedSize: Size(75, 50),
-                      backgroundColor: selectedPCs.contains("B$i") ? Color(0xFF640EF1) : Colors.white, // Ubah warna jika dipilih
+                      backgroundColor: selectedPCs.contains("B$i") ? Color(0xFF640EF1) : Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -85,10 +93,10 @@ class _BetaPageState extends State<BetaPage> {
         color: Color(0xFF2C2D59), 
         padding: EdgeInsets.all(10),
         height: 180, 
-        child: Center( // Memusatkan konten dalam bottom bar
+        child: Center(
           child: Column(
-            mainAxisSize: MainAxisSize.min, // Mengatur tinggi kolom agar tidak mengambil ruang lebih
-            crossAxisAlignment: CrossAxisAlignment.center, // Memusatkan konten secara horizontal
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 "Selected PCs",
@@ -120,39 +128,25 @@ class _BetaPageState extends State<BetaPage> {
               SizedBox(height: 5), 
               ElevatedButton(
                 onPressed: () {
-                  // Aksi yang dilakukan saat tombol diklik
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text("Confirm Booking"),
-                        content: Text("Are you sure you want to book the selected PCs?"),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop(); // Tindakan saat dibatalkan
-                            },
-                            child: Text("Cancel"),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop(); // Tindakan saat konfirmasi
-                              // Lakukan pemesanan atau tindakan lainnya di sini
-                            },
-                            child: Text("Confirm"),
-                          ),
-                        ],
-                      );
-                    },
-                  );
+                  if (selectedPCs.isNotEmpty) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OrderPage(selectedPCs: selectedPCs),
+                      ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Please select at least one PC.")),
+                    );
+                  }
                 },
                 child: Text("Confirm Booking"),
-                style: ElevatedButton.styleFrom(
-                ),
+                style: ElevatedButton.styleFrom(),
               ),
             ],
           ),
-      ),
+        ),
       ),
     );
   }
