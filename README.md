@@ -5,9 +5,9 @@ Aplikasi Reservasi PC untuk internet cafe MOD di bandung
 Application Build using flutter and dart
 
 # Team Project
-<li>Afzaal isnaufal -Developer and PM</li>
-<li>Athalla Muhammad Abdul ziz -UI Designer and dev</li>
-<li>Muhammad rizki -Developer</li>
-<li>Salman hamala -Designer and dev</li>
-<li>Syawal najat -Dev</li>
+<li>Afzaal isnaufal </li>
+<li>Athalla Muhammad Abdul ziz</li>
+<li>Muhammad rizki </li>
+<li>Salman hamala </li>
+<li>Syawal najat</li>
 
