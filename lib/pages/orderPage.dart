@@ -24,14 +24,16 @@ class _OrderPageState extends State<OrderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: AppBar(
-        title: Text("Order Page"),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.popUntil(context, ModalRoute.withName('/')); 
-          }
+        automaticallyImplyLeading: false,
+        title: Text("Order Page",
+        style: TextStyle(
+          color: Colors.white
         ),
+        ),
+
+        backgroundColor: Colors.blueAccent,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

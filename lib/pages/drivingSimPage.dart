@@ -10,7 +10,6 @@ class DrivingPage extends StatefulWidget {
 }
 
 class _DrivingPageState extends State<DrivingPage> {
-  // Daftar PC yang telah dipilih oleh pengguna
   List<String> selectedPCs = [];
 
   // Fungsi untuk menambahkan atau menghapus PC dari daftar yang dipilih
@@ -20,9 +19,8 @@ class _DrivingPageState extends State<DrivingPage> {
         selectedPCs.remove(pc); // Jika sudah dipilih, hapus dari daftar
       } else {
         if (selectedPCs.length < 3) {
-          selectedPCs.add(pc); // Jika belum dipilih dan max belum tercapai, tambahkan ke daftar
+          selectedPCs.add(pc); 
         } else {
-          // Menampilkan pesan jika sudah mencapai batas maksimum
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text("You can only select a maximum of 3 PCs.")),
           );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import './signup.dart';
 import '../components/bottom_nav_bar.dart';
-import 'adminDrivingPage.dart'; 
+import 'adminPages/mainPageAdmin.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -107,7 +107,7 @@ class _LoginState extends State<Login> {
                       if (username == 'admin' && password == 'admin123') {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => MainPage()),
+                          MaterialPageRoute(builder: (context) => AdminMainPage()),
                         );
                       } else {
                         Navigator.pushReplacement(

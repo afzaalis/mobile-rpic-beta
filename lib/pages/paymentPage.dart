@@ -19,11 +19,16 @@ class _PaymentPageState extends State<PaymentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Payment Page"),
+          automaticallyImplyLeading: false,
+        title: Text("Payment Page",
+          style: TextStyle(
+          color: Colors.white
+        ),
+        ),
         backgroundColor: Colors.blueAccent,
       ),
       body: Container(
-        color: Colors.grey[100], // Background color
+        color: Colors.grey[100], 
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(

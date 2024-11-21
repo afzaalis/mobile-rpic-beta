@@ -11,6 +11,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _activeIndex = 1; 
+
   final List<Widget> _pages = [
     ProfilePage(),
     Reservasipage(), 

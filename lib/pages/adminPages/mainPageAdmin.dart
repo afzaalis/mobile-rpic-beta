@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rpic_mobile_beta/pages/adminPages/adminDrivingPage.dart';
-import 'package:rpic_mobile_beta/pages/betaPage.dart';
-import 'package:rpic_mobile_beta/pages/drivingSimPage.dart';
-import 'alphaPage.dart';
+import 'adminBetaPage.dart';
+import 'adminAlphaPage.dart';
+import 'adminDrivingPage.dart';
 
-class Reservasipage extends StatelessWidget {
+class AdminMainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +48,7 @@ class Reservasipage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Alphapage()),
+                      MaterialPageRoute(builder: (context) => AdminAlphaPage()),
                     );
                   },
                   child: Container(
@@ -72,7 +71,7 @@ class Reservasipage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BetaPage()),
+                      MaterialPageRoute(builder: (context) => AdminBetaPage()),
                     );
                   },
                   child: Container(
@@ -96,7 +95,7 @@ class Reservasipage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => DrivingPage()),
+                      MaterialPageRoute(builder: (context) => AdminDrivingSimulatorPage()),
                     );
                   },
                   child: Container(
