@@ -5,11 +5,18 @@ import 'package:rpic_mobile_beta/pages/introPage.dart';
 import 'package:rpic_mobile_beta/pages/login.dart';
 import 'package:rpic_mobile_beta/pages/signup.dart';
 import 'package:rpic_mobile_beta/components/bottom_nav_bar.dart';
+import 'package:provider/provider.dart'; // Import provider
+import './model/user_provider.dart';
+import './model/user.dart';
 
-void main()async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await LocalNotifications.init();
-  runApp(MyApp());
+
+void main() async {
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => UserProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -17,12 +24,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AnimatedTextPage(), 
+      home: AnimatedTextPage(),
       routes: {
         '/intropage': (context) => Intropage(),
-        '/login': (context) => Login(), 
-        '/signup': (context) => SignupPage(), 
-        '/main': (context) => MainPage(), 
+        '/login': (context) => Login(),
+        '/signup': (context) => SignupPage(),
+        '/main': (context) => MainPage(),
       },
     );
   }

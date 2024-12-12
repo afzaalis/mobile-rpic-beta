@@ -13,7 +13,7 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
-  int _currentIndex = 0; // Keep track of the currently selected tab
+  int _currentIndex = 0; 
 
   @override
   Widget build(BuildContext context) {

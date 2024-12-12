@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_avatar/flutter_advanced_avatar.dart'; 
+import 'package:flutter_advanced_avatar/flutter_advanced_avatar.dart';
+import 'package:provider/provider.dart'; 
+import '../model/user_provider.dart';
 
 class ProfilePage extends StatelessWidget {
   final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
@@ -8,10 +10,43 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final padding = MediaQuery.of(context).padding;
 
+    // Mengambil data pengguna dari UserProvider
+    final user = Provider.of<UserProvider>(context).user;
 
     return Scaffold(
       key: _scaffoldMessengerKey,
       backgroundColor: const Color(0xFF0B0B12),
+     appBar: AppBar(
+
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFF2C2D59),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Provider.of<UserProvider>(context, listen: false).clearUser();
+              Navigator.pushReplacementNamed(context, '/login');
+            },
+            icon: const Icon(
+              Icons.logout,
+              color: Colors.white,
+              size: 30, 
+            ),
+          ),
+        ],
+  flexibleSpace: Padding(
+    padding: const EdgeInsets.only(top: 50.0), 
+    child: Center(
+      child: const Text(
+        "Profile",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
+  ),
+      ),
       body: Column(
         children: [
           SafeArea(
@@ -19,21 +54,6 @@ class ProfilePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                 children: [
-                  Container(
-                    color: const Color(0xFF2C2D59),
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: const Center(
-                      child: Text(
-                        'PROFILE',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 1,
-                        ),
-                      ),
-                    ),
-                  ),
                   Stack(
                     alignment: Alignment.centerLeft,
                     children: [
@@ -53,9 +73,10 @@ class ProfilePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const Text(
-                                'ATYANAJG',
-                                style: TextStyle(
+                              // Menampilkan nama dan email dari data pengguna yang login
+                              Text(
+                                user?.name ?? 'Nama Pengguna',
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -63,7 +84,7 @@ class ProfilePage extends StatelessWidget {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                'atyanajg@gmail.com',
+                                user?.email ?? 'email@example.com',
                                 style: TextStyle(
                                   color: Colors.white.withOpacity(0.7),
                                   fontSize: 13,
@@ -74,8 +95,7 @@ class ProfilePage extends StatelessWidget {
                           const Spacer(),
                           AdvancedAvatar(
                             margin: EdgeInsets.only(right: 15),
-                            name: 'Atyanajg',
-                            image: NetworkImage('images/imgProfile/atyan.jpg'), 
+                            name: user?.name ?? 'Nama Pengguna',
                             size: 70,
                             statusColor: Colors.blue,
                           ),
@@ -118,7 +138,7 @@ class ProfilePage extends StatelessWidget {
   Widget _buildBalanceSection() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      color: const Color(0xFF15162F), 
+      color: const Color(0xFF15162F),
       child: Row(
         children: [
           Container(
@@ -190,10 +210,10 @@ class ProfilePage extends StatelessWidget {
   Widget _buildVoucherSection(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => VoucherPage()), 
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => VoucherPage()), 
+        // );
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -258,45 +278,20 @@ class ProfilePage extends StatelessWidget {
                 hintText: 'Tulis feedback Anda...',
                 hintStyle: TextStyle(color: Colors.white54),
                 filled: true,
-                fillColor: Color(0xFF15162F), 
+                fillColor: Color(0xFF15162F),
               ),
               maxLines: 3,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
           ElevatedButton(
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Feedback telah dikirim!'),
-                ),
-              );
+              // Handle feedback submission
             },
-            child: const Text(
-              'Kirim',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF108EE9),
-            ),
+            style: ElevatedButton.styleFrom(),
+            child: const Text('Kirim Feedback'),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class VoucherPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Voucher Saya'),
-      ),
-      body: const Center(
-        child: Text('Ini adalah halaman Voucher Saya'),
       ),
     );
   }

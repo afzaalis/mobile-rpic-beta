@@ -1,8 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import './login.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:rpic_mobile_beta/pages/login.dart';
 
-class SignupPage extends StatelessWidget {
+class SignupPage extends StatefulWidget {
+  @override
+  _SignupPageState createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
+
+  Future<void> _signup() async {
+    // Validasi password dan konfirmasi password
+    if (_passwordController.text != _confirmPasswordController.text) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Passwords do not match.')),
+      );
+      return;
+    }
+
+    final String url = 'http://10.0.2.2:3000/api/auth/signup';
+
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({
+          'name': _usernameController.text,
+          'email': _emailController.text,
+          'password': _passwordController.text,
+        }),
+      );
+
+      if (response.statusCode == 201) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('User created successfully')),
+        );
+        Navigator.pushReplacementNamed(context, '/login'); 
+      } else {
+        final responseBody = json.decode(response.body);
+        String message = responseBody['message'] ?? 'Something went wrong. Please try again.';
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(message)),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to signup. Error: $e')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +91,7 @@ class SignupPage extends StatelessWidget {
                   ),
                   // Username input
                   TextFormField(
+                    controller: _usernameController,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       labelText: 'Username',
@@ -59,6 +113,7 @@ class SignupPage extends StatelessWidget {
                   SizedBox(height: 10),
                   // Email input
                   TextFormField(
+                    controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: 'Email',
@@ -80,6 +135,7 @@ class SignupPage extends StatelessWidget {
                   SizedBox(height: 10),
                   // Password input
                   TextFormField(
+                    controller: _passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'Password',
@@ -101,6 +157,7 @@ class SignupPage extends StatelessWidget {
                   SizedBox(height: 10),
                   // Confirm Password input
                   TextFormField(
+                    controller: _confirmPasswordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'Confirm Password',
@@ -125,9 +182,7 @@ class SignupPage extends StatelessWidget {
                     width: 300,
                     height: 35,
                     child: ElevatedButton(
-                      onPressed: () {
-                        print('Sign Up button pressed');
-                      },
+                      onPressed: _signup,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF640EF1),
                         shape: RoundedRectangleBorder(
