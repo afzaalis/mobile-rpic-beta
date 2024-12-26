@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rpic_mobile_beta/pages/adminPages/adminDrivingPage.dart';
 import 'package:rpic_mobile_beta/pages/betaPage.dart';
 import 'package:rpic_mobile_beta/pages/drivingSimPage.dart';
 import 'alphaPage.dart';
@@ -45,6 +44,56 @@ class Reservasipage extends StatelessWidget {
                 SizedBox(height: 30),
 
                 // Gambar alpha
+<<<<<<< HEAD
+               GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Alphapage(pcType: 'Alpha'),  // Mengirim tipe PC
+                    ),
+                  );
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 32,
+                  height: 156,
+                  child: Center(
+                    child: Image.asset(
+                      "images/imgPagePC/alpha.png",
+                      fit: BoxFit.cover,
+                      width: MediaQuery.of(context).size.width - 32,
+                      height: 156,
+                    ),
+                  ),
+                ),
+              ),
+
+                SizedBox(height: 50),
+
+                // Gambar beta
+               GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BetaPage( pcType: 'Beta'),  // Mengirim tipe PC
+                    ),
+                  );
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 32,
+                  height: 156,
+                  child: Center(
+                    child: Image.asset(
+                      "images/imgPagePC/beta.png",
+                      fit: BoxFit.cover,
+                      width: MediaQuery.of(context).size.width - 32,
+                      height: 156,
+                    ),
+                  ),
+                ),
+              ),
+=======
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -89,10 +138,34 @@ class Reservasipage extends StatelessWidget {
                     ),
                   ),
                 ),
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                 SizedBox(height: 50),
 
                 // Gambar drive simulator
                 GestureDetector(
+<<<<<<< HEAD
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DrivingPage(pcType: 'Driving Simulator'),  // Mengirim tipe PC
+                    ),
+                  );
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 32,
+                  height: 156,
+                  child: Center(
+                    child: Image.asset(
+                      "images/imgPagePC/drivesimulator.png",
+                      fit: BoxFit.cover,
+                      width: MediaQuery.of(context).size.width - 32,
+                      height: 156,
+                    ),
+                  ),
+                ),
+              ),
+=======
                   onTap: () {
                     Navigator.push(
                       context,
@@ -113,6 +186,7 @@ class Reservasipage extends StatelessWidget {
                     ),
                   ),
                 ),
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
               ],
             ),
           ),
@@ -120,4 +194,8 @@ class Reservasipage extends StatelessWidget {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29

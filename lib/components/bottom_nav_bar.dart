@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:circle_nav_bar/circle_nav_bar.dart';
+<<<<<<< HEAD
+import 'package:shared_preferences/shared_preferences.dart';
+=======
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
 import '../pages/reservasiPage.dart';
 import '../pages/historyPage.dart';
 import '../pages/profilePage.dart';
@@ -12,6 +16,20 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _activeIndex = 1; 
 
+<<<<<<< HEAD
+  @override
+  Widget build(BuildContext context) {
+   
+    final List<Widget> _pages = [
+      ProfilePage(),
+      Reservasipage(),
+      HistoryPage(), 
+    ];
+
+    return Scaffold(
+      backgroundColor: Color(0xFF05051E),
+      body: _pages[_activeIndex], 
+=======
   final List<Widget> _pages = [
     ProfilePage(),
     Reservasipage(), 
@@ -29,12 +47,17 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       backgroundColor: Color(0xFF05051E), 
       body: _pages[_activeIndex],
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
       bottomNavigationBar: CircleNavBar(
         activeIndex: _activeIndex,
         activeIcons: const [
           Icon(Icons.person, color: Color(0xFF15162F)),
           Icon(Icons.home, color: Color(0xFF05051E)),
+<<<<<<< HEAD
+          Icon(Icons.history, color: Color(0xFF05051E)),
+=======
           Icon(Icons.history, color: Color(0xFF05051E)), 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
         ],
         inactiveIcons: const [
           Text("Profile", style: TextStyle(color: Colors.black)),
@@ -65,7 +88,15 @@ class _MainPageState extends State<MainPage> {
           end: Alignment.bottomLeft,
           colors: [Colors.blue, Colors.red],
         ),
+<<<<<<< HEAD
+        onTap: (index) {
+          setState(() {
+            _activeIndex = index;
+          });
+        },
+=======
         onTap: (index) => _onNavItemTapped(index), 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
       ),
     );
   }

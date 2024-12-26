@@ -1,7 +1,28 @@
+<<<<<<< HEAD
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart'; 
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import '../model/user_provider.dart'; 
+import '../model/user.dart';
 import './signup.dart';
 import '../components/bottom_nav_bar.dart';
-import 'adminPages/mainPageAdmin.dart';
+import 'adminPages/mainPageAdmin.dart'; 
+
+// Instansiasi FlutterSecureStorage
+final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
+=======
+import 'dart:convert'; 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import './signup.dart';
+import '../components/bottom_nav_bar.dart';
+import 'adminPages/mainPageAdmin.dart'; 
+import 'package:provider/provider.dart'; 
+import '../model/user_provider.dart'; 
+import '../model/user.dart';
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
 
 class Login extends StatefulWidget {
   @override
@@ -13,6 +34,112 @@ class _LoginState extends State<Login> {
   final TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
 
+<<<<<<< HEAD
+  // Fungsi login
+=======
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
+  Future<void> _login() async {
+    final String url = 'http://10.0.2.2:3000/api/auth/login'; 
+
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({
+        'email': _usernameController.text,
+        'password': _passwordController.text,
+      }),
+    );
+
+    // Log response untuk debugging
+    print("Response status: ${response.statusCode}");
+    print("Response body: ${response.body}");
+
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body);
+      print(responseBody); // Log respons untuk melihat apakah ada error detailnya
+
+      final user = responseBody['user'];
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Welcome back, ${user['name']}')),
+      );
+
+      // Menyimpan data pengguna ke UserProvider
+      Provider.of<UserProvider>(context, listen: false).setUser(User(
+<<<<<<< HEAD
+        id: user['id'],
+        name: user['name'],
+        email: user['email'],
+        role: user['role'],
+      ));
+
+      // Simpan userId dan role ke SharedPreferences atau flutter_secure_storage
+      await _secureStorage.write(key: 'userId', value: user['id'].toString());
+      await _secureStorage.write(key: 'role', value: user['role']);
+
+      // Periksa role user dan arahkan ke halaman yang sesuai
+=======
+        name: user['name'],
+        email: user['email'],
+        role: user['role'],
+        // Tambahkan data lain jika diperlukan, seperti id, role, dll.
+      ));
+
+      // Periksa role user
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
+      if (user['role'] == 'admin') {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => AdminMainPage()),
+        );
+      } else if (user['role'] == 'customer') {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => MainPage()),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Invalid user role.')),
+        );
+      }
+    } else {
+      final responseBody = json.decode(response.body);
+      String message = responseBody['message'] ?? 'Invalid email or password.';
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message)),
+      );
+    }
+  }
+
+<<<<<<< HEAD
+  // Periksa status login saat aplikasi dimulai
+  Future<void> _checkLoginStatus() async {
+    final userId = await _secureStorage.read(key: 'userId');
+    final role = await _secureStorage.read(key: 'role');
+
+    if (userId != null && role != null) {
+      // Jika sudah login, arahkan ke halaman yang sesuai berdasarkan role
+      if (role == 'admin') {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => AdminMainPage()),
+        );
+      } else if (role == 'customer') {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => MainPage()),
+        );
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _checkLoginStatus();  
+  }
+
+=======
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,23 +226,7 @@ class _LoginState extends State<Login> {
                   width: 250,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {
-                      String username = _usernameController.text;
-                      String password = _passwordController.text;
-
-                      // Check for admin credentials
-                      if (username == 'admin' && password == 'admin123') {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => AdminMainPage()),
-                        );
-                      } else {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => MainPage()),
-                        );
-                      }
-                    },
+                    onPressed: _login, // Memanggil fungsi login saat tombol ditekan
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF640EF1),
                       shape: RoundedRectangleBorder(

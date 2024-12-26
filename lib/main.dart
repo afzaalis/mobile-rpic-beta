@@ -1,15 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:rpic_mobile_beta/local_notifications.dart';
+<<<<<<< HEAD
+import 'package:rpic_mobile_beta/pages/adminPages/mainPageAdmin.dart';
+=======
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
 import 'package:rpic_mobile_beta/pages/animated_text_page.dart';
 import 'package:rpic_mobile_beta/pages/introPage.dart';  
 import 'package:rpic_mobile_beta/pages/login.dart';
 import 'package:rpic_mobile_beta/pages/signup.dart';
 import 'package:rpic_mobile_beta/components/bottom_nav_bar.dart';
+<<<<<<< HEAD
+import 'package:provider/provider.dart'; 
+import './model/user_provider.dart';
+import './model/user.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-void main()async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await LocalNotifications.init();
-  runApp(MyApp());
+final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
+=======
+import 'package:provider/provider.dart'; // Import provider
+import './model/user_provider.dart';
+import './model/user.dart';
+
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
+
+void main() async {
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => UserProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -17,13 +37,66 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AnimatedTextPage(), 
+<<<<<<< HEAD
+      home: FutureBuilder(
+        future: _checkLoginStatus(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return AnimatedTextPage();  
+          }
+
+          if (snapshot.hasData) {
+            // Jika sudah login, cek role dan arahkan
+            String role = snapshot.data ?? '';
+            if (role == 'admin') {
+              return AdminMainPage(); 
+            } else if (role == 'customer') {
+              return MainPage();  
+            }
+          }
+          return AnimatedTextPage();  
+        },
+      ),
       routes: {
+        '/AnimatedTextPage': (context) => AnimatedTextPage(),
+=======
+      home: AnimatedTextPage(),
+      routes: {
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
         '/intropage': (context) => Intropage(),
-        '/login': (context) => Login(), 
-        '/signup': (context) => SignupPage(), 
-        '/main': (context) => MainPage(), 
+        '/login': (context) => Login(),
+        '/signup': (context) => SignupPage(),
+        '/main': (context) => MainPage(),
+<<<<<<< HEAD
+        
       },
     );
   }
+
+  Future<String?> _checkLoginStatus() async {
+    final userId = await _secureStorage.read(key: 'userId');
+    final role = await _secureStorage.read(key: 'role');
+    
+    if (userId != null && role != null) {
+      return role;  
+    }
+    return null;  
+  }
+
+  // Fungsi logout
+  static Future<void> logout(BuildContext context) async {
+    await _secureStorage.delete(key: 'userId');
+    await _secureStorage.delete(key: 'role');
+
+    // Mengarahkan ke halaman login setelah logout
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => Login()),
+    );
+  }
+=======
+      },
+    );
+  }
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
 }

@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+<<<<<<< HEAD
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:rpic_mobile_beta/components/bottom_nav_bar.dart';
+import 'package:rpic_mobile_beta/main.dart';
+import 'package:rpic_mobile_beta/pages/introPage.dart';
+import 'package:rpic_mobile_beta/pages/login.dart';
+import 'adminPages/mainPageAdmin.dart';
+
+final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
+=======
 import 'introPage.dart';
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
 
 class AnimatedTextPage extends StatefulWidget {
   @override
@@ -8,12 +19,55 @@ class AnimatedTextPage extends StatefulWidget {
 }
 
 class _AnimatedTextPageState extends State<AnimatedTextPage> {
+<<<<<<< HEAD
+  bool _showSecondText = false;
+  bool _showFirstText = true;
+=======
   bool _showSecondText = false; 
   bool _showFirstText = true; 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
 
   @override
   void initState() {
     super.initState();
+<<<<<<< HEAD
+    Timer(Duration(seconds: 4), () {  // Menambah durasi animasi pertama
+      if (mounted) {
+        setState(() {
+          _showFirstText = false;
+          _showSecondText = true;
+        });
+
+        Timer(Duration(seconds: 2), () {
+          if (mounted) {
+            _checkLoginStatus(); // Cek login status saat animasi selesai
+          }
+        });
+      }
+    });
+  }
+
+  Future<void> _checkLoginStatus() async {
+    final role = await _secureStorage.read(key: 'role');
+    
+    if (role != null) {
+      if (role == 'admin') {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => AdminMainPage()),
+        );
+      } else if (role == 'customer') {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => MainPage()),
+        );
+      }
+    } else {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => Intropage()), 
+      );
+    }
+  }
+
+=======
     Timer(Duration(seconds: 3), () {
       setState(() {
         _showFirstText = false; 
@@ -28,6 +82,7 @@ class _AnimatedTextPageState extends State<AnimatedTextPage> {
     });
   }
 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,8 +104,12 @@ class AnimatedText extends StatefulWidget {
   _AnimatedTextState createState() => _AnimatedTextState();
 }
 
+<<<<<<< HEAD
+class _AnimatedTextState extends State<AnimatedText> with SingleTickerProviderStateMixin {
+=======
 class _AnimatedTextState extends State<AnimatedText>
     with SingleTickerProviderStateMixin {
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -58,7 +117,11 @@ class _AnimatedTextState extends State<AnimatedText>
   void initState() {
     super.initState();
     _controller = AnimationController(
+<<<<<<< HEAD
+      duration: const Duration(seconds: 2), // Durasi animasi fade
+=======
       duration: const Duration(seconds: 2),
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
       vsync: this,
     )..forward();
 
@@ -70,7 +133,11 @@ class _AnimatedTextState extends State<AnimatedText>
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+<<<<<<< HEAD
+        if (widget.showFirstText)
+=======
         if (widget.showFirstText) 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
           FadeTransition(
             opacity: _animation,
             child: Row(
@@ -93,8 +160,12 @@ class _AnimatedTextState extends State<AnimatedText>
               ],
             ),
           ),
+<<<<<<< HEAD
+        if (widget.showSecondText)
+=======
         // Second text
         if (widget.showSecondText) 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
           FadeTransition(
             opacity: _animation,
             child: Row(

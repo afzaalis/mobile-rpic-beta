@@ -37,16 +37,30 @@ dependencies:
   cupertino_icons: ^1.0.8
   blurrycontainer: ^2.1.0 
   circle_nav_bar: ^2.1.1  #syawal
+<<<<<<< HEAD
+  flutter_advanced_avatar: ^1.5.0 #salman
+=======
   flutter_advanced_avatar: ^1.0.1 #salman
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
   flutter_dialogs: ^2.0.0 #atha
   flutter_local_notifications: ^17.2.4 #afzal
   flutter_timezone: ^3.0.1 #afzaal
   rxdart: ^0.28.0 #afzaal
   google_fonts: ^6.2.1 #rizki
   tab_container: ^3.5.3
+<<<<<<< HEAD
+  shared_preferences: ^2.1.1 #afzaal
+  http: ^1.2.2 #afzaal
+  provider: ^6.1.2 #afzaal
+  flutter_secure_storage: ^8.0.0 #afzaal
+  image_picker: ^1.1.2
+  permission_handler: ^10.0.0
+=======
   shared_preferences: ^2.1.1
+  http: ^1.2.2
+  provider: ^6.1.2
 
-
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
 dev_dependencies:
   flutter_test:
     sdk: flutter

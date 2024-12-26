@@ -1,17 +1,100 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_avatar/flutter_advanced_avatar.dart'; 
+import 'package:flutter_advanced_avatar/flutter_advanced_avatar.dart';
+import 'package:provider/provider.dart'; 
+<<<<<<< HEAD
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';  
+import 'package:image_picker/image_picker.dart';  
+import 'dart:io';  
+import 'package:permission_handler/permission_handler.dart'; 
+import '../model/user_provider.dart';
+import 'login.dart'; 
+
+class ProfilePage extends StatefulWidget {
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+  final FlutterSecureStorage _secureStorage = FlutterSecureStorage();  
+  final ImagePicker _picker = ImagePicker();  
+  File? _imageFile;  
+=======
+import '../model/user_provider.dart';
 
 class ProfilePage extends StatelessWidget {
   final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
 
   @override
   Widget build(BuildContext context) {
     final padding = MediaQuery.of(context).padding;
 
+<<<<<<< HEAD
+=======
+    // Mengambil data pengguna dari UserProvider
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
+    final user = Provider.of<UserProvider>(context).user;
 
     return Scaffold(
       key: _scaffoldMessengerKey,
       backgroundColor: const Color(0xFF0B0B12),
+<<<<<<< HEAD
+      appBar: AppBar(
+=======
+     appBar: AppBar(
+
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFF2C2D59),
+        actions: [
+          IconButton(
+            onPressed: () {
+<<<<<<< HEAD
+              _logout(context); 
+=======
+              Provider.of<UserProvider>(context, listen: false).clearUser();
+              Navigator.pushReplacementNamed(context, '/login');
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
+            },
+            icon: const Icon(
+              Icons.logout,
+              color: Colors.white,
+              size: 30, 
+            ),
+          ),
+        ],
+<<<<<<< HEAD
+        flexibleSpace: Padding(
+          padding: const EdgeInsets.only(top: 50.0), 
+          child: Center(
+            child: const Text(
+              "Profile",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ),
+=======
+  flexibleSpace: Padding(
+    padding: const EdgeInsets.only(top: 50.0), 
+    child: Center(
+      child: const Text(
+        "Profile",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
+  ),
+      ),
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
       body: Column(
         children: [
           SafeArea(
@@ -19,21 +102,6 @@ class ProfilePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                 children: [
-                  Container(
-                    color: const Color(0xFF2C2D59),
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: const Center(
-                      child: Text(
-                        'PROFILE',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 1,
-                        ),
-                      ),
-                    ),
-                  ),
                   Stack(
                     alignment: Alignment.centerLeft,
                     children: [
@@ -53,9 +121,15 @@ class ProfilePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const Text(
-                                'ATYANAJG',
-                                style: TextStyle(
+<<<<<<< HEAD
+                              Text(
+                                user?.name ?? 'Nama pengguna',
+=======
+                              // Menampilkan nama dan email dari data pengguna yang login
+                              Text(
+                                user?.name ?? 'Nama Pengguna',
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -63,7 +137,7 @@ class ProfilePage extends StatelessWidget {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                'atyanajg@gmail.com',
+                                user?.email ?? 'email@example.com',
                                 style: TextStyle(
                                   color: Colors.white.withOpacity(0.7),
                                   fontSize: 13,
@@ -72,12 +146,27 @@ class ProfilePage extends StatelessWidget {
                             ],
                           ),
                           const Spacer(),
+<<<<<<< HEAD
+                          GestureDetector(
+                            onTap: _showImagePicker,  
+                            child: _imageFile == null 
+                                ? AdvancedAvatar(
+                                    margin: EdgeInsets.only(right: 15),
+                                    name: user?.name ?? 'Nama Pengguna',
+                                    size: 70,
+                                    statusColor: Colors.blue,
+                                  )
+                                : CircleAvatar(
+                                    radius: 35,
+                                    backgroundImage: FileImage(_imageFile!),
+                                  ),
+=======
                           AdvancedAvatar(
                             margin: EdgeInsets.only(right: 15),
-                            name: 'Atyanajg',
-                            image: NetworkImage('images/imgProfile/atyan.jpg'), 
+                            name: user?.name ?? 'Nama Pengguna',
                             size: 70,
                             statusColor: Colors.blue,
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                           ),
                         ],
                       ),
@@ -115,10 +204,79 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
+<<<<<<< HEAD
+  // Fungsi logout yang menghapus data dan menavigasi kembali ke Login
+  Future<void> _logout(BuildContext context) async {
+    await _secureStorage.delete(key: 'userId');  
+    await _secureStorage.delete(key: 'role');    
+
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    userProvider.clearUser();  
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => Login()),
+    );
+  }
+
+  // Fungsi untuk menampilkan pilihan gambar (kamera atau galeri)
+Future<void> _showImagePicker() async {
+  // Meminta izin akses galeri
+  var galleryStatus = await Permission.photos.request();
+  if (galleryStatus.isGranted) {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+    }
+  } else {
+    print("Galeri tidak diizinkan");
+  }
+
+  // Meminta izin akses kamera jika dibutuhkan
+  var cameraStatus = await Permission.camera.request();
+  if (cameraStatus.isGranted) {
+    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+    }
+  } else {
+    print("Kamera tidak diizinkan");
+  }
+}
+
+
+void _showPermissionDialog() {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('Izin Diperlukan'),
+        content: const Text('Aplikasi ini memerlukan izin untuk mengakses galeri. Anda dapat memberikan izin di pengaturan aplikasi.'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              openAppSettings(); 
+            },
+            child: const Text('Pergi ke Pengaturan'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+
+=======
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
   Widget _buildBalanceSection() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      color: const Color(0xFF15162F), 
+      color: const Color(0xFF15162F),
       child: Row(
         children: [
           Container(
@@ -138,7 +296,11 @@ class ProfilePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
+<<<<<<< HEAD
+                '50.000',
+=======
                 'Rp100.000',
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,
@@ -190,10 +352,10 @@ class ProfilePage extends StatelessWidget {
   Widget _buildVoucherSection(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => VoucherPage()), 
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => VoucherPage()), 
+        // );
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -258,45 +420,20 @@ class ProfilePage extends StatelessWidget {
                 hintText: 'Tulis feedback Anda...',
                 hintStyle: TextStyle(color: Colors.white54),
                 filled: true,
-                fillColor: Color(0xFF15162F), 
+                fillColor: Color(0xFF15162F),
               ),
               maxLines: 3,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
           ElevatedButton(
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Feedback telah dikirim!'),
-                ),
-              );
+              // Handle feedback submission
             },
-            child: const Text(
-              'Kirim',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF108EE9),
-            ),
+            style: ElevatedButton.styleFrom(),
+            child: const Text('Kirim Feedback'),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class VoucherPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Voucher Saya'),
-      ),
-      body: const Center(
-        child: Text('Ini adalah halaman Voucher Saya'),
       ),
     );
   }
