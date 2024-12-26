@@ -44,6 +44,7 @@ class Reservasipage extends StatelessWidget {
                 SizedBox(height: 30),
 
                 // Gambar alpha
+<<<<<<< HEAD
                GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -92,10 +93,57 @@ class Reservasipage extends StatelessWidget {
                   ),
                 ),
               ),
+=======
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Alphapage()),
+                    );
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width - 32, 
+                    height: 156,
+                    child: Center(
+                      child: Image.asset(
+                        "images/imgPagePC/alpha.png",
+                        fit: BoxFit.cover,
+                        width: MediaQuery.of(context).size.width - 32, 
+                        height: 156,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 50),
+
+                // Gambar beta
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BetaPage()),
+                    );
+                  },
+                  child: Container(
+                    // margin: EdgeInsets.only(left: 25.0),
+                    width: MediaQuery.of(context).size.width - 32, 
+                    height: 156,
+                    child: Center(
+                      child: Image.asset(
+                        "images/imgPagePC/beta.png",
+                        fit: BoxFit.cover,
+                        width: MediaQuery.of(context).size.width - 32, 
+                        height: 156,
+                      ),
+                    ),
+                  ),
+                ),
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                 SizedBox(height: 50),
 
                 // Gambar drive simulator
                 GestureDetector(
+<<<<<<< HEAD
                 onTap: () {
                   Navigator.push(
                     context,
@@ -117,6 +165,28 @@ class Reservasipage extends StatelessWidget {
                   ),
                 ),
               ),
+=======
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DrivingPage()),
+                    );
+                  },
+                  child: Container(
+                    // margin: EdgeInsets.only(left: 25.0),
+                    width: MediaQuery.of(context).size.width - 32, 
+                    height: 156,
+                    child: Center(
+                      child: Image.asset(
+                        "images/imgPagePC/drivesimulator.png",
+                        fit: BoxFit.cover,
+                        width: MediaQuery.of(context).size.width - 32, 
+                        height: 156,
+                      ),
+                    ),
+                  ),
+                ),
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
               ],
             ),
           ),
@@ -124,4 +194,8 @@ class Reservasipage extends StatelessWidget {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29

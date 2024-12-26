@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'adminBetaPage.dart';
 import 'adminAlphaPage.dart';
@@ -12,12 +13,23 @@ class AdminMainPage extends StatelessWidget {
     MyApp.logout(context);
   }
 
+=======
+import 'adminBetaPage.dart';
+import 'adminAlphaPage.dart';
+import 'adminDrivingPage.dart';
+
+class AdminMainPage extends StatelessWidget {
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF05051E),
       body: SafeArea(
+<<<<<<< HEAD
         child: SingleChildScrollView(
+=======
+        child: SingleChildScrollView( 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
             child: Column(
@@ -38,9 +50,15 @@ class AdminMainPage extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
+<<<<<<< HEAD
                         color: Color(0XFF15162F),
                       ),
                       padding: const EdgeInsets.all(8.0),
+=======
+                        color: Color(0XFF15162F), 
+                      ),
+                      padding: const EdgeInsets.all(8.0), 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                       child: Icon(
                         Icons.notifications,
                         color: Colors.white,
@@ -60,13 +78,21 @@ class AdminMainPage extends StatelessWidget {
                     );
                   },
                   child: Container(
+<<<<<<< HEAD
                     width: MediaQuery.of(context).size.width - 32,
+=======
+                    width: MediaQuery.of(context).size.width - 32, 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                     height: 156,
                     child: Center(
                       child: Image.asset(
                         "images/imgPagePC/alpha.png",
                         fit: BoxFit.cover,
+<<<<<<< HEAD
                         width: MediaQuery.of(context).size.width - 32,
+=======
+                        width: MediaQuery.of(context).size.width - 32, 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                         height: 156,
                       ),
                     ),
@@ -83,13 +109,22 @@ class AdminMainPage extends StatelessWidget {
                     );
                   },
                   child: Container(
+<<<<<<< HEAD
                     width: MediaQuery.of(context).size.width - 32,
+=======
+                    // margin: EdgeInsets.only(left: 25.0),
+                    width: MediaQuery.of(context).size.width - 32, 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                     height: 156,
                     child: Center(
                       child: Image.asset(
                         "images/imgPagePC/beta.png",
                         fit: BoxFit.cover,
+<<<<<<< HEAD
                         width: MediaQuery.of(context).size.width - 32,
+=======
+                        width: MediaQuery.of(context).size.width - 32, 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                         height: 156,
                       ),
                     ),
@@ -106,18 +141,28 @@ class AdminMainPage extends StatelessWidget {
                     );
                   },
                   child: Container(
+<<<<<<< HEAD
                     width: MediaQuery.of(context).size.width - 32,
+=======
+                    // margin: EdgeInsets.only(left: 25.0),
+                    width: MediaQuery.of(context).size.width - 32, 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                     height: 156,
                     child: Center(
                       child: Image.asset(
                         "images/imgPagePC/drivesimulator.png",
                         fit: BoxFit.cover,
+<<<<<<< HEAD
                         width: MediaQuery.of(context).size.width - 32,
+=======
+                        width: MediaQuery.of(context).size.width - 32, 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                         height: 156,
                       ),
                     ),
                   ),
                 ),
+<<<<<<< HEAD
                 SizedBox(height: 30),
 
                 // Tombol logout di bawah
@@ -140,6 +185,8 @@ class AdminMainPage extends StatelessWidget {
                     ),
                   ),
                 ),
+=======
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
               ],
             ),
           ),
@@ -147,4 +194,8 @@ class AdminMainPage extends StatelessWidget {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29

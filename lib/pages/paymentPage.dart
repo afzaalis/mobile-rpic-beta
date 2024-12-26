@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:rpic_mobile_beta/components/bottom_nav_bar.dart';
@@ -5,6 +6,12 @@ import 'package:tab_container/tab_container.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+=======
+import 'package:flutter/material.dart';
+import 'package:rpic_mobile_beta/pages/introPage.dart';
+import 'package:tab_container/tab_container.dart';
+import '../components/bottom_nav_bar.dart';
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
 
 class PaymentPage extends StatefulWidget {
   final String totalPrice;
@@ -16,6 +23,7 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
+<<<<<<< HEAD
   late Timer _timer;
   int _remainingTime = 300; 
   double userBalance = 50000.0; 
@@ -131,6 +139,24 @@ class _PaymentPageState extends State<PaymentPage> {
       ),
       body: Container(
         color: Colors.grey[100],
+=======
+  int _currentIndex = 0; 
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          automaticallyImplyLeading: false,
+        title: Text("Payment Page",
+          style: TextStyle(
+          color: Colors.white
+        ),
+        ),
+        backgroundColor: Colors.blueAccent,
+      ),
+      body: Container(
+        color: Colors.grey[100], 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
@@ -143,6 +169,7 @@ class _PaymentPageState extends State<PaymentPage> {
               SizedBox(height: 20),
               Text(
                 "Total Amount: ${widget.totalPrice} IDR",
+<<<<<<< HEAD
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -170,21 +197,34 @@ class _PaymentPageState extends State<PaymentPage> {
                     color: Colors.redAccent,
                   ),
                 ),
+=======
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green[700]),
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
               ),
               SizedBox(height: 20),
 
               // Tab Container for Payment Methods
               TabContainer(
+<<<<<<< HEAD
                 tabs: [
                   _buildPaymentTab('Dana'),
                   _buildPaymentTab('GoPay'),
                   _buildPaymentTab('m-Banking'),
                 ],
+=======
+                tabs: const [
+                  Text('Dana'),
+                  Text('GoPay'),
+                  Text('m-Banking'),
+                ],
+                // Define how to build the content for the tabs
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                 children: [
                   _buildPaymentMethodDetails('Dana'),
                   _buildPaymentMethodDetails('GoPay'),
                   _buildPaymentMethodDetails('m-Banking'),
                 ],
+<<<<<<< HEAD
               ),
               SizedBox(height: 20),
 
@@ -222,12 +262,34 @@ class _PaymentPageState extends State<PaymentPage> {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueAccent,
+=======
+                // Assuming 'onChange' or 'onTap' might not be present,
+                // so we will handle tab switching using the stateful widget
+              ),
+              SizedBox(height: 20),
+
+              // Back to Home button
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); 
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MainPage()), 
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
+<<<<<<< HEAD
                   child: Text("Pay Now", style: TextStyle(fontSize: 16)),
+=======
+                  child: Text("Back to Home", style: TextStyle(fontSize: 16)),
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                 ),
               ),
             ],
@@ -237,6 +299,7 @@ class _PaymentPageState extends State<PaymentPage> {
     );
   }
 
+<<<<<<< HEAD
   // Membuat tab pembayaran dengan efek hover dan highlight ketika dipilih
   Widget _buildPaymentTab(String method) {
     return GestureDetector(
@@ -273,6 +336,8 @@ class _PaymentPageState extends State<PaymentPage> {
     );
   }
 
+=======
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
   Widget _buildPaymentMethodDetails(String method) {
     String instructions;
     String virtualAccount;
@@ -280,6 +345,7 @@ class _PaymentPageState extends State<PaymentPage> {
     switch (method) {
       case 'Dana':
         instructions = "Transfer the total amount to the Dana account.";
+<<<<<<< HEAD
         virtualAccount = "0812-3456-7890";
         break;
       case 'GoPay':
@@ -289,6 +355,17 @@ class _PaymentPageState extends State<PaymentPage> {
       case 'm-Banking':
         instructions = "Transfer the total amount to the virtual account number.";
         virtualAccount = "869002135470";
+=======
+        virtualAccount = "0812-3456-7890"; 
+        break;
+      case 'GoPay':
+        instructions = "Transfer the total amount to the GoPay account.";
+        virtualAccount = "0812-9876-5432"; 
+        break;
+      case 'm-Banking':
+        instructions = "Transfer the total amount to the virtual account number.";
+        virtualAccount = "869002135470"; 
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
         break;
       default:
         return Container();
@@ -299,11 +376,15 @@ class _PaymentPageState extends State<PaymentPage> {
       children: [
         Text(instructions),
         SizedBox(height: 10),
+<<<<<<< HEAD
         Text(
           "Virtual Account: $virtualAccount",
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueGrey),
         ),
         Divider(height: 20, color: Colors.grey),
+=======
+        Text("Virtual Account: $virtualAccount"),
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
       ],
     );
   }

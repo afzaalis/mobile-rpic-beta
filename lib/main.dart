@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:rpic_mobile_beta/local_notifications.dart';
+<<<<<<< HEAD
 import 'package:rpic_mobile_beta/pages/adminPages/mainPageAdmin.dart';
+=======
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
 import 'package:rpic_mobile_beta/pages/animated_text_page.dart';
 import 'package:rpic_mobile_beta/pages/introPage.dart';  
 import 'package:rpic_mobile_beta/pages/login.dart';
 import 'package:rpic_mobile_beta/pages/signup.dart';
 import 'package:rpic_mobile_beta/components/bottom_nav_bar.dart';
+<<<<<<< HEAD
 import 'package:provider/provider.dart'; 
 import './model/user_provider.dart';
 import './model/user.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
+=======
+import 'package:provider/provider.dart'; // Import provider
+import './model/user_provider.dart';
+import './model/user.dart';
+
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
 
 void main() async {
   runApp(
@@ -27,6 +37,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+<<<<<<< HEAD
       home: FutureBuilder(
         future: _checkLoginStatus(),
         builder: (context, snapshot) {
@@ -48,10 +59,15 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/AnimatedTextPage': (context) => AnimatedTextPage(),
+=======
+      home: AnimatedTextPage(),
+      routes: {
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
         '/intropage': (context) => Intropage(),
         '/login': (context) => Login(),
         '/signup': (context) => SignupPage(),
         '/main': (context) => MainPage(),
+<<<<<<< HEAD
         
       },
     );
@@ -78,4 +94,9 @@ class MyApp extends StatelessWidget {
       MaterialPageRoute(builder: (context) => Login()),
     );
   }
+=======
+      },
+    );
+  }
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -11,6 +12,17 @@ import 'adminPages/mainPageAdmin.dart';
 
 // Instansiasi FlutterSecureStorage
 final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
+=======
+import 'dart:convert'; 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import './signup.dart';
+import '../components/bottom_nav_bar.dart';
+import 'adminPages/mainPageAdmin.dart'; 
+import 'package:provider/provider.dart'; 
+import '../model/user_provider.dart'; 
+import '../model/user.dart';
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
 
 class Login extends StatefulWidget {
   @override
@@ -22,7 +34,10 @@ class _LoginState extends State<Login> {
   final TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
 
+<<<<<<< HEAD
   // Fungsi login
+=======
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
   Future<void> _login() async {
     final String url = 'http://10.0.2.2:3000/api/auth/login'; 
 
@@ -50,6 +65,7 @@ class _LoginState extends State<Login> {
 
       // Menyimpan data pengguna ke UserProvider
       Provider.of<UserProvider>(context, listen: false).setUser(User(
+<<<<<<< HEAD
         id: user['id'],
         name: user['name'],
         email: user['email'],
@@ -61,6 +77,15 @@ class _LoginState extends State<Login> {
       await _secureStorage.write(key: 'role', value: user['role']);
 
       // Periksa role user dan arahkan ke halaman yang sesuai
+=======
+        name: user['name'],
+        email: user['email'],
+        role: user['role'],
+        // Tambahkan data lain jika diperlukan, seperti id, role, dll.
+      ));
+
+      // Periksa role user
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
       if (user['role'] == 'admin') {
         Navigator.pushReplacement(
           context,
@@ -85,6 +110,7 @@ class _LoginState extends State<Login> {
     }
   }
 
+<<<<<<< HEAD
   // Periksa status login saat aplikasi dimulai
   Future<void> _checkLoginStatus() async {
     final userId = await _secureStorage.read(key: 'userId');
@@ -112,6 +138,8 @@ class _LoginState extends State<Login> {
     _checkLoginStatus();  
   }
 
+=======
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
   @override
   Widget build(BuildContext context) {
     return Scaffold(

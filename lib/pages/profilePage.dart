@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_avatar/flutter_advanced_avatar.dart';
 import 'package:provider/provider.dart'; 
+<<<<<<< HEAD
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';  
 import 'package:image_picker/image_picker.dart';  
 import 'dart:io';  
@@ -18,23 +19,43 @@ class _ProfilePageState extends State<ProfilePage> {
   final FlutterSecureStorage _secureStorage = FlutterSecureStorage();  
   final ImagePicker _picker = ImagePicker();  
   File? _imageFile;  
+=======
+import '../model/user_provider.dart';
+
+class ProfilePage extends StatelessWidget {
+  final GlobalKey<ScaffoldMessengerState> _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
 
   @override
   Widget build(BuildContext context) {
     final padding = MediaQuery.of(context).padding;
 
+<<<<<<< HEAD
+=======
+    // Mengambil data pengguna dari UserProvider
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
     final user = Provider.of<UserProvider>(context).user;
 
     return Scaffold(
       key: _scaffoldMessengerKey,
       backgroundColor: const Color(0xFF0B0B12),
+<<<<<<< HEAD
       appBar: AppBar(
+=======
+     appBar: AppBar(
+
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
         automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF2C2D59),
         actions: [
           IconButton(
             onPressed: () {
+<<<<<<< HEAD
               _logout(context); 
+=======
+              Provider.of<UserProvider>(context, listen: false).clearUser();
+              Navigator.pushReplacementNamed(context, '/login');
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
             },
             icon: const Icon(
               Icons.logout,
@@ -43,6 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ],
+<<<<<<< HEAD
         flexibleSpace: Padding(
           padding: const EdgeInsets.only(top: 50.0), 
           child: Center(
@@ -57,6 +79,22 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
       ),
+=======
+  flexibleSpace: Padding(
+    padding: const EdgeInsets.only(top: 50.0), 
+    child: Center(
+      child: const Text(
+        "Profile",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
+  ),
+      ),
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
       body: Column(
         children: [
           SafeArea(
@@ -83,8 +121,14 @@ class _ProfilePageState extends State<ProfilePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
+<<<<<<< HEAD
                               Text(
                                 user?.name ?? 'Nama pengguna',
+=======
+                              // Menampilkan nama dan email dari data pengguna yang login
+                              Text(
+                                user?.name ?? 'Nama Pengguna',
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
@@ -102,6 +146,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ],
                           ),
                           const Spacer(),
+<<<<<<< HEAD
                           GestureDetector(
                             onTap: _showImagePicker,  
                             child: _imageFile == null 
@@ -115,6 +160,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                     radius: 35,
                                     backgroundImage: FileImage(_imageFile!),
                                   ),
+=======
+                          AdvancedAvatar(
+                            margin: EdgeInsets.only(right: 15),
+                            name: user?.name ?? 'Nama Pengguna',
+                            size: 70,
+                            statusColor: Colors.blue,
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                           ),
                         ],
                       ),
@@ -152,6 +204,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+<<<<<<< HEAD
   // Fungsi logout yang menghapus data dan menavigasi kembali ke Login
   Future<void> _logout(BuildContext context) async {
     await _secureStorage.delete(key: 'userId');  
@@ -218,6 +271,8 @@ void _showPermissionDialog() {
 }
 
 
+=======
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
   Widget _buildBalanceSection() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -241,7 +296,11 @@ void _showPermissionDialog() {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
+<<<<<<< HEAD
                 '50.000',
+=======
+                'Rp100.000',
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,

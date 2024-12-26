@@ -3,10 +3,14 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+<<<<<<< HEAD
   file_selector_windows
   flutter_secure_storage_windows
   flutter_timezone
   permission_handler_windows
+=======
+  flutter_timezone
+>>>>>>> c940960ae92cf8fb163d95ca605fb8287553cc29
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
